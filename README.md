@@ -48,6 +48,20 @@ Back in your host operating system, notice that there is a new directory in the 
 
 It's easy to tinker with exactly what gets installed, just edit the bootstrap.sh file.
 
+## Webservices setup
+
+ * http://doc.prestashop.com/display/PS16/Chapter+1+-+Creating+an+access+to+the+back-office
+ * http://doc.prestashop.com/display/PS16/Chapter+2+-+Discovery+-+Testing+your+access+to+the+web+service+with+the+browser
+ * BUT ... before you can access webservices, mod_rewrite must be setup for curl requests to work, otherwise you'll keep running into: `The requested URL ... was not found on this server.`
+  * High-Level docs: http://www.dev-metal.com/enable-mod_rewrite-ubuntu-12-04-lts/
+    * `vagrant ssh`
+    * `sudo a2enmod rewrite`
+    * `sudo service apache2 restart`
+    * `sudo nano /etc/apache2/sites-available/default`
+    * Change the first two occurrences of `AllowOverride None` to `AllowOverride All` then save and exit the nano editor via `CTRL-X`, `y` and `ENTER`.
+    * Restart the server again: `sudo service apache2 restart`
+    * Use `exit` to leave the vagrant vm's terminal
+
 ## Further Documentation
 - http://docs.vagrantup.com/v2/getting-started/index.html
 - https://www.virtualbox.org/wiki/End-user_documentation
